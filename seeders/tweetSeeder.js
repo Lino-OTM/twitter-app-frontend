@@ -20,13 +20,10 @@ const Tweet = require("../models/Tweet");
 module.exports = async () => {
   const tweets = [];
   const users = await User.find();
+  
   for (const user of users) {
-    for (let i = 0; i < 5; i++) {
-      const createdTweet = new Tweet({
-        text: faker.lorem.sentence(2),
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      });
+    for (let i = 0; i < Math.ceil(Math.random() * 10); i++) {
+      const createdTweet = new Tweet({ text: faker.lorem.sentence(2) });
       tweets.push(createdTweet);
       user.tweets.push(createdTweet._id);
       await user.save();
