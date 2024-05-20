@@ -3,8 +3,7 @@ const { mongoose, Schema } = require("../db");
 const tweetSchema = new Schema(
   {
     text: String,
-    user: String,
-    // Agregar la relación del tweet con el usuario.
+    user: { type: Schema.Types.ObjectId, ref: "User" },
     // Añadir los likes.
   },
   {
