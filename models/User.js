@@ -4,10 +4,12 @@ const userSchema = new Schema(
   {
     firstname: String,
     lastname: String,
-    age: Schema.Types.Number,
-  },
-  {
-    timestamps: true,
+    username: String,
+    password: '12345',
+    email: String,
+    description: String,
+    // Añadir foto de perfil del usuario.
+    // Añadir listado de tweets del usuario.
   },
 );
 
