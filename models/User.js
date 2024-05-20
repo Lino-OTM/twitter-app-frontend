@@ -5,7 +5,7 @@ const userSchema = new Schema(
     firstname: String,
     lastname: String,
     username: String,
-    password: '12345',
+    password: String,
     email: String,
     description: String,
     // Añadir foto de perfil del usuario.

@@ -14,18 +14,21 @@
  */
 
 const faker = require("@faker-js/faker").fakerES;
-const Article = require("../models/Article");
+const User = require("../models/User");
+const Tweet = require("../models/Tweet");
 
 module.exports = async () => {
-  const articles = [];
+  const tweets = [];
 
   for (let i = 0; i < 500; i++) {
-    articles.push({
-      title: faker.lorem.sentence(5),
-      content: faker.lorem.paragraphs(),
+    tweets.push({
+      text: faker.lorem.sentence(2),
+      // user: faker.lorem.sentence(5),
+      createdAt: new Date(),
+      updatedAt: new Date(),
     });
   }
 
-  await Article.insertMany(articles);
-  console.log("[Database] Se corrió el seeder de Articles.");
+  await Tweet.insertMany(tweets);
+  console.log("[Database] Se corrió el seeder de Tweets.");
 };
