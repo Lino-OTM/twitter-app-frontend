@@ -18,10 +18,24 @@ async function store(req, res) {
 }
 
 // Update the specified resource in storage.
-async function update(req, res) {}
+async function update(req, res) {
+  const tweetToUpdate = await Tweet.findById(req.params.id);
+  if (tweetToUpdate.likes.includes(req.auth.sub)) {
+    tweetToUpdate.likes.pull(req.auth.sub);
+    console.log("se quito el like");
+  } else {
+    tweetToUpdate.likes.push(req.auth.sub);
+    console.log("puse like");
+  }
+  await tweetToUpdate.save();
+  return res.json({ msg: "se actualizó el like" });
+}
 
 // Remove the specified resource from storage.
-async function destroy(req, res) {}
+async function destroy(req, res) {
+  await Tweet.findByIdAndDelete(req.params.id);
+  return res.json({ msg: "se eliminó el tweet" });
+}
 
 // Otros handlers...
 // ...
