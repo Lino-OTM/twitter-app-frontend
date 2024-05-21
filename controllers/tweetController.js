@@ -1,7 +1,10 @@
-const { Article } = require("../models/Tweet");
+const Tweet = require("../models/Tweet");
 
 // Display a listing of the resource.
-async function index(req, res) {}
+async function index(req, res) {
+  const tweets = await Tweet.find().populate("likes");
+  res.json(tweets);
+}
 
 // Display the specified resource.
 async function show(req, res) {}
