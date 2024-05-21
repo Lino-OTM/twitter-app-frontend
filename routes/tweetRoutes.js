@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const tweetController = require("../controllers/tweetController");
+const { expressjwt: checkJwt } = require("express-jwt");
 
 /*
  * API endpoints relacionados a los artículos.
@@ -10,6 +11,9 @@ const tweetController = require("../controllers/tweetController");
  */
 
 router.get("/", tweetController.index);
+
+router.use(checkJwt({ secret: process.env.SECRET_JWT, algorithms: ["HS256"] }));
+
 router.post("/", tweetController.store);
 router.get("/:id", tweetController.show);
 router.patch("/:id", tweetController.update);

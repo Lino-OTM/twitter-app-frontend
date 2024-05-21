@@ -1,4 +1,6 @@
 const Tweet = require("../models/Tweet");
+const User = require("../models/User");
+const jwt = require("jsonwebtoken");
 
 // Display a listing of the resource.
 async function index(req, res) {
@@ -9,8 +11,11 @@ async function index(req, res) {
 // Display the specified resource.
 async function show(req, res) {}
 
-// Store a newly created resource in storage.
-async function store(req, res) {}
+// Store a newly created resource in storage.node
+async function store(req, res) {
+  await Tweet.create({ text: req.body.text, user: req.auth.sub });
+  res.json({ msg: "se creo el tweet" });
+}
 
 // Update the specified resource in storage.
 async function update(req, res) {}
