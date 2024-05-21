@@ -8,7 +8,8 @@ const userSchema = new Schema({
   email: String,
   description: String,
   tweets: [{ type: Schema.Types.ObjectId, ref: "Tweet" }],
-  // Añadir foto de perfil del usuario.
+  likes: [{ type: Schema.Types.ObjectId, ref: "Tweet" }],
+  image: String,
   // Añadir listado de tweets del usuario.
 });
 

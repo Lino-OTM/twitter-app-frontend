@@ -4,7 +4,7 @@ const tweetSchema = new Schema(
   {
     text: String,
     user: { type: Schema.Types.ObjectId, ref: "User" },
-    // Añadir los likes.
+    likes: [{ type: Schema.Types.ObjectId, ref: "User" }],
   },
   {
     timestamps: true,

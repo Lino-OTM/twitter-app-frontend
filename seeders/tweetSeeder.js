@@ -20,7 +20,8 @@ const Tweet = require("../models/Tweet");
 module.exports = async () => {
   const tweets = [];
   const users = await User.find();
-  
+
+  // Crear Tweets y asociarlos a usuarios
   for (const user of users) {
     for (let i = 0; i < Math.ceil(Math.random() * 10); i++) {
       const createdTweet = new Tweet({ text: faker.lorem.sentence(2) });
@@ -31,4 +32,18 @@ module.exports = async () => {
   }
   await Tweet.insertMany(tweets);
   console.log("[Database] Se corrió el seeder de Tweets.");
+
+  // Añadir likes aleatorios
+  const allTweets = await Tweet.find();
+  for (const user of users) {
+    const numberOfLikes = Math.floor(Math.random() * allTweets.length);
+    for (let i = 0; i < numberOfLikes; i++) {
+      const tweetToLike = allTweets[Math.floor(Math.random() * allTweets.length)];
+      user.likes.push(tweetToLike._id);
+      tweetToLike.likes.push(user._id);
+      await user.save();
+      await tweetToLike.save();
+    }
+  }
+  console.log("[Database] Se añadieron likes a los Tweets.");
 };

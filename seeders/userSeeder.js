@@ -35,6 +35,7 @@ module.exports = async () => {
         provider: "gmail.com",
       }),
       description: faker.person.bio(),
+      image: faker.image.avatar(),
     });
   }
 
