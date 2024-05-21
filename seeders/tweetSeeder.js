@@ -36,7 +36,7 @@ module.exports = async () => {
   // Añadir likes aleatorios
   const allTweets = await Tweet.find();
   for (const user of users) {
-    const numberOfLikes = Math.floor(Math.random() * allTweets.length);
+    const numberOfLikes = 20;
     for (let i = 0; i < numberOfLikes; i++) {
       const tweetToLike = allTweets[Math.floor(Math.random() * allTweets.length)];
       user.likes.push(tweetToLike._id);

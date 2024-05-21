@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const userController = require("../controllers/userController");
+const { expressjwt: checkJwt } = require("express-jwt");
+const authController = require("../controllers/authController")
 
 /*
  * API endpoints relacionados a los usuarios.
@@ -9,7 +11,8 @@ const userController = require("../controllers/userController");
  * tal como se definió en el archivo `routes/index.js`.
  */
 
-router.get("/", userController.index);
+router.post("/tokens", authController.getToken);
+router.get("/", checkJwt({ secret: process.env.SECRET_JWT, algorithms: ["HS256"] }),userController.index);
 router.post("/", userController.store);
 router.get("/:id", userController.show);
 router.patch("/:id", userController.update);

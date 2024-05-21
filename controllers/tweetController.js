@@ -2,7 +2,7 @@ const Tweet = require("../models/Tweet");
 
 // Display a listing of the resource.
 async function index(req, res) {
-  const tweets = await Tweet.find().populate("likes");
+  const tweets = await Tweet.find().limit(10).populate("likes").limit(10);
   res.json(tweets);
 }
 
