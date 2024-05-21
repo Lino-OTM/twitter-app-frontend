@@ -10,7 +10,11 @@ async function index(req, res) {
 async function show(req, res) {}
 
 // Store a newly created resource in storage.
-async function store(req, res) {}
+async function store(req, res) {
+  const { firstname, lastname, email, username, password } = req.body;
+  await User.create({ firstname, lastname, email, username, password });
+  res.json({ msg: "se ha creado el usuario" });
+}
 
 // Update the specified resource in storage.
 async function update(req, res) {}
