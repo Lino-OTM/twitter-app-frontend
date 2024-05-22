@@ -10,7 +10,6 @@ const userSchema = new Schema({
   tweets: [{ type: Schema.Types.ObjectId, ref: "Tweet" }],
   likes: [{ type: Schema.Types.ObjectId, ref: "Tweet" }],
   image: String,
-  // Añadir listado de tweets del usuario.
 });
 
 const User = mongoose.model("User", userSchema); // Entre comillas se coloca el nombre del modelo en mayúscula y en singular.
