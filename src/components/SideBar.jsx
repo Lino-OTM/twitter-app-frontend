@@ -22,9 +22,9 @@ function SideBar() {
           </li>
         </ul>
       </div>
-      <div className="d-flex flex-column">
+      <div className="d-flex container flex-column justify-content-between sidebarButtons">
         <button className="btn btn-primary rounded-pill mt-2">Tweet</button>
-        <button className="btn btn-danger justify-content-end rounded-pill mt-2">
+        <button className="btn btn-danger rounded-pill">
           Logout
         </button>
       </div>

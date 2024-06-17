@@ -11,23 +11,21 @@ function Tweet() {
         method: "get",
       });
       setTweets(response.data);
-      console.log(response.data)
-
     };
     getTweets();
   }, []);
   return (
-    <>
-      <div className="row">
-        <div className="col-2">
-          <img
-            className="rounded-circle"
-            style={{ width: 50, height: 50 }}
-            src="https://www.shutterstock.com/image-vector/young-smiling-man-avatar-brown-600nw-2261401207.jpg"
-          />
-        </div>
-        <div className="col-10">
-          {tweets.map((tweet) => (
+    <div className="row">
+      {tweets.map((tweet) => (
+        <div className="d-flex mt-4">
+          <div className="col-2">
+            <img
+              className="rounded-circle"
+              style={{ width: 50, height: 50 }}
+              src={tweet.image}
+            />
+          </div>
+          <div className="col-10">
             <div key={tweet._id}>
               <h6 className="d-inline">
                 {tweet.firstname} {tweet.lastname}
@@ -39,10 +37,10 @@ function Tweet() {
                 <i className="bi bi-suit-heart"></i> cantidad de likes
               </p>
             </div>
-          ))}
+          </div>
         </div>
-      </div>
-    </>
+      ))}
+    </div>
   );
 }
 
