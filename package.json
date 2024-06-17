@@ -1,24 +1,26 @@
 {
-  "name": "hack-academy_proyecto-base",
-  "description": "Proyecto Base creado por Hack Academy para agilizar el desarrollo de ejercicios.",
-  "version": "1.0.0",
-  "main": "server.js",
+  "name": "twitter-app-frontend",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "start": "node server.js",
-    "seeders": "node seeders/runAllSeeders.js"
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
   },
-  "keywords": [],
-  "author": "Hack Academy",
-  "license": "ISC",
   "dependencies": {
-    "bcryptjs": "^2.4.3",
-    "dotenv": "^16.4.5",
-    "express": "^4.19.2",
-    "express-jwt": "^8.4.1",
-    "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.3.4"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@faker-js/faker": "^8.4.1"
+    "@types/react": "^18.2.66",
+    "@types/react-dom": "^18.2.22",
+    "@vitejs/plugin-react": "^4.2.1",
+    "eslint": "^8.57.0",
+    "eslint-plugin-react": "^7.34.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.6",
+    "vite": "^5.2.0"
   }
 }
