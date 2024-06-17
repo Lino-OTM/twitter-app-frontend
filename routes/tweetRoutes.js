@@ -11,9 +11,7 @@ const { expressjwt: checkJwt } = require("express-jwt");
  */
 
 router.get("/", tweetController.index);
-
 router.use(checkJwt({ secret: process.env.SECRET_JWT, algorithms: ["HS256"] }));
-
 router.post("/", tweetController.store);
 router.get("/:id", tweetController.show);
 router.patch("/:id/likes", tweetController.update);

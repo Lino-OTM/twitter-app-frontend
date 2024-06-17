@@ -3,7 +3,8 @@ const router = express.Router();
 const userController = require("../controllers/userController");
 const { expressjwt: checkJwt } = require("express-jwt");
 
-router.get("/", checkJwt({ secret: process.env.SECRET_JWT, algorithms: ["HS256"] }),userController.index);
+router.use(checkJwt({ secret: process.env.SECRET_JWT, algorithms: ["HS256"] }));
+router.get("/",userController.index);
 router.post("/", userController.store);
 router.get("/:id", userController.show);
 router.patch("/:id", userController.update);

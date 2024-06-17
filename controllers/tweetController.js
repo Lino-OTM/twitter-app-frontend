@@ -1,6 +1,4 @@
 const Tweet = require("../models/Tweet");
-const User = require("../models/User");
-const jwt = require("jsonwebtoken");
 
 // Display a listing of the resource.
 async function index(req, res) {
