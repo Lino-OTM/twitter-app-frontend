@@ -31,3 +31,17 @@ function Tweet() {
 }
 
 export default Tweet;
+
+
+{/* <article>
+    <header>
+        <img src="" alt="" />
+        <div>
+            <strong></strong>
+            <span> </span>
+        </div>
+    </header><button>Seguir</button>
+    <aside>
+
+    </aside>
+</article> */}
