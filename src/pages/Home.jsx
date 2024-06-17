@@ -27,8 +27,8 @@ function Home() {
                 className="form-control text-white bg-transparent"
                 aria-label="With textarea"
               ></textarea>
+            <button className="btn btn-primary w-25">Tweet</button>
             </div>
-            <button className="btn btn-primary">Tweet</button>
 
             <Tweet />
             <hr />

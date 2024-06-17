@@ -1,6 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
+import { useEffect } from "react";
 
 function Tweet() {
+  const [tweets, setTweets] = useState([]);
+  useEffect(() => {
+    const getTweets = async () => {
+      const response = await axios({
+        url: ` http://localhost:3000/users`,
+        method: "get",
+      });
+      setTweets(response.data);
+      console.log(response.data)
+
+    };
+    getTweets();
+  }, []);
   return (
     <>
       <div className="row">
@@ -12,18 +27,19 @@ function Tweet() {
           />
         </div>
         <div className="col-10">
-          <h6 className="d-inline">pepe</h6>
-          <span className="ms-2 fw-light">@username</span>
-          <span className="ms-2 fw-light">6h</span>
-          <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-            Dignissimos quaerat reiciendis sapiente distinctio aut similique
-            maiores earum illum doloremque! Odit dolorum illo voluptatum
-            molestias vel. Quam illum maiores reiciendis inventore.
-          </p>
-          <p>
-            <i className="bi bi-suit-heart"></i> cantidad de likes
-          </p>
+          {tweets.map((tweet) => (
+            <div key={tweet._id}>
+              <h6 className="d-inline">
+                {tweet.firstname} {tweet.lastname}
+              </h6>
+              <span className="ms-2 fw-light">@{tweet.username}</span>
+              <span className="ms-2 fw-light">6h</span>
+              <p>{tweet.tweets[0].text}</p>
+              <p>
+                <i className="bi bi-suit-heart"></i> cantidad de likes
+              </p>
+            </div>
+          ))}
         </div>
       </div>
     </>
@@ -32,8 +48,8 @@ function Tweet() {
 
 export default Tweet;
 
-
-{/* <article>
+{
+  /* <article>
     <header>
         <img src="" alt="" />
         <div>
@@ -44,4 +60,5 @@ export default Tweet;
     <aside>
 
     </aside>
-</article> */}
+</article> */
+}
