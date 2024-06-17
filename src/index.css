@@ -12,3 +12,18 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+#profile-background-image {
+  background-image: url("https://img.freepik.com/foto-gratis/playa-tropical_74190-188.jpg");
+  height: 100px;
+  width: 100%;
+  background-position: center center;
+  background-size: cover;
+  position: relative;
+}
+
+#profile-image {
+  position: absolute;
+  top: 70px;
+  left: 10px;
+}
