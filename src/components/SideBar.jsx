@@ -1,23 +1,32 @@
-import React from "react";
-
+import { Link } from "react-router-dom";
 function SideBar() {
   return (
     <>
       <ul className="nav flex-column">
         <li className="nav-item d-flex">
-          <a className="nav-link text-white" aria-current="page" href="#">
+          <Link to={"/"} className="nav-link text-white" aria-current="page">
             <i className="bi bi-twitter-x"></i>
-          </a>
+          </Link>
         </li>
         <li className="nav-item d-flex">
-          <a className="nav-link text-white" href="#">
+          <Link to={"/"} className="nav-link text-white">
             <i className="bi bi-house-heart"></i> Home
-          </a>
+          </Link>
         </li>
         <li className="nav-item d-flex">
-          <a className="nav-link text-white" href="#">
+          <Link to={"/:username"} className="nav-link text-white">
             <i className="bi bi-person"></i> Profile
-          </a>
+          </Link>
+        </li>
+        <li className="nav-item d-flex">
+          <Link to={"/login"} className="nav-link text-white">
+            <i className="bi bi-person"></i> Sign in
+          </Link>
+        </li>
+        <li className="nav-item d-flex">
+          <Link to={"/registro"} className="nav-link text-white">
+            <i className="bi bi-person"></i> Sign Up
+          </Link>
         </li>
       </ul>
 
