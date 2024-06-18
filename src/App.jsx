@@ -6,6 +6,7 @@ import Profile from './pages/Profile';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
 import Login from './pages/Login';
+import Register from './pages/Register';
 
 function App() {
 	const user = true;
@@ -21,6 +22,10 @@ function App() {
 		{
 			path: '/login',
 			element: <Login />,
+		},
+		{
+			path: '/registro',
+			element: <Register/>,
 		},
 		{
 			path: '/',

@@ -24,7 +24,7 @@ function Tweet() {
               src={tweet.image}
             />
           </div>
-          <div className="col-11">
+          <div className="col-11 ms-2">
             <div>
               <h6 className="d-inline fw-bold">
                 {tweet.firstname} {tweet.lastname}

@@ -4,6 +4,9 @@
 .col-3 {
   height: 100vh !important;
 }
+html {
+  font-size: 1rem !important;
+}
 .sidebarButtons {
   height: 75vh;
   max-width: 10rem;
@@ -30,6 +33,6 @@ textarea::placeholder {
 .test {
   outline: 1px solid red !important;
 }
-textarea{
+textarea {
   height: auto !important ;
 }

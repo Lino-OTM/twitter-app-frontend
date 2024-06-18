@@ -1,12 +1,9 @@
 import "./Login.css";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
 export const Login = () => {
-  const user = useSelector((state) => state.auth.user);
-  const dispatch = useDispatch();
 
   return (
     <main className="main-container d-flex justify-content-center align-items-center vh-100">
