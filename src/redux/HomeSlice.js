@@ -2,10 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const HomeSlice = createSlice({
   name: "home",
-  initialState: [],
+  initialState: { tweets: [{ text: "hola" }] },
   reducers: {
     createTweet(state, action) {
-      state.push(action.payload);
+      state.tweets.push(action.payload);
     },
   },
 });
