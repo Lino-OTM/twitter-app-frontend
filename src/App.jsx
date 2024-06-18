@@ -1,36 +1,47 @@
+import { Children } from 'react';
 import './App.css';
 import Tweet from './components/Tweet';
 import Home from './pages/Home';
-import ErrorMsg from './components/ErrorMsg';
 import Profile from './pages/Profile';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Register from './pages/Register';
+import { Navigate } from 'react-router-dom';
 import Login from './pages/Login';
 
 function App() {
-  const router = createBrowserRouter([
-    {
-      path: '/',
-      element: <Home />,
-    },
-    {
-      path: '/login',
-      element: <Login />,
-    },
-    {
-      path: '/registro',
-      element: <Register />,
-    },
-    {
-      path: '/:username',
-      element: <Profile />,
-    },
-    {
-      path: '*',
-      element: <ErrorMsg />,
-    },
-  ]);
-  return <RouterProvider router={router} />;
+	const user = false;
+
+	const ProtectedRoute = ({ user, children }) => {
+		if (!user) {
+			return <Navigate to="/login" />;
+		}
+		return children;
+	};
+
+	const router = createBrowserRouter([
+		{
+			path: '/login',
+			element: <Login />,
+		},
+		{
+			path: '/',
+			element: (
+				<ProtectedRoute user={user}>
+					<Home />
+				</ProtectedRoute>
+			),
+		},
+
+		{
+			path: '/:username',
+			element: (
+				<ProtectedRoute user={user}>
+					<Login />
+				</ProtectedRoute>
+			),
+		},
+	]);
+
+	return <RouterProvider router={router} />;
 }
 
 export default App;
