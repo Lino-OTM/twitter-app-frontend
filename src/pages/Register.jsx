@@ -1,6 +1,44 @@
+import { useState } from "react";
 import "./Register.css"
+import { Link } from "react-router-dom";
 
 export const Register = () => {
+  const [formData, setFormData] = useState({
+    firstname: '',
+    lastname: '',
+    email: '',
+    username: '',
+    image: 'https://avatars.githubusercontent.com/u/64696952',
+    password: '',
+  });
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch('http://localhost:3000/users', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        console.log('Usuario registrado');
+      } else {
+        console.log('No se pudo registrar el usuario');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
   return (
     <main className="main-container d-flex justify-content-center align-items-center vh-100">
 
@@ -12,30 +50,30 @@ export const Register = () => {
       <p className="sign-up-form-wrapper__aside-text text-white">Hi! Welcome to X Clone.</p>
       </aside>
 
-      <form className="sign-up-form-wrapper__register-form bg-white d-flex flex-column container-fluid" action="">
+      <form className="sign-up-form-wrapper__register-form bg-white d-flex flex-column container-fluid" action="POST" onSubmit={handleSubmit}>
         <div className="sign-up-form-wrapper__register-form-top-section">
         <h1 className="sign-up-form-wrapper__register-form-title">Sign up</h1>
         <p className="sign-up-form-wrapper__register-form-subtitle">Create an account and start using X</p>
         </div>
 
       <div className="sign-up-form-wrapper__register-form-inputs-wrapper">
-        <input className="form-control" type="text" placeholder="First name" />
-        <input className="form-control" type="text" placeholder="Last name" />
-        <input className="form-control" type="text" placeholder="Email" />
-        <input className="form-control" type="text" placeholder="Username" />
+        <input className="form-control" type="text" name="firstname" placeholder="First name" required value={formData.firstname} onChange={handleChange} />
+        <input className="form-control" type="text" name="lastname" placeholder="Last name" required value={formData.lastname} onChange={handleChange} />
+        <input className="form-control" type="email" name="email" placeholder="Email" required value={formData.email} onChange={handleChange} />
+        <input className="form-control" type="text" name="username" placeholder="Username" required value={formData.username} onChange={handleChange} />
 
         <div className="sign-up-form-wrapper__register-form-select-file-wrapper d-flex align-items-center">
-        <input type="file" id="files" className="sign-up-form-wrapper__register-form-select-file-input"/>
-        <label className="sign-up-form-wrapper__register-form-select-file-label" for="files">Choose file</label>
+        <input type="file" id="files" name="files" className="sign-up-form-wrapper__register-form-select-file-input"/>
+        <label className="sign-up-form-wrapper__register-form-select-file-label" htmlFor="files">Choose file</label>
         <p className="sign-up-form-wrapper__register-form-selected-file">No file choosen</p>
         </div>
 
-        <input className="form-control" type="password" placeholder="Password" />
+        <input className="form-control" type="password" name="password" placeholder="Password" required value={formData.password} onChange={handleChange} />
         </div>
 
         <div className="sign-up-form-wrapper__register-form-bottom-section">
-        <button className="sign-up-form-wrapper__form-submit-btn btn text-white w-100"type="submit">Sign up</button>
-        <p className="sign-up-form-wrapper__log-in text-center">Already have an account? <a className="text-decoration-none" href="#">Sign in</a></p>
+        <button className="sign-up-form-wrapper__form-submit-btn text-white w-100"type="submit">Sign up</button>
+        <p className="sign-up-form-wrapper__log-in text-center">Already have an account? <Link className="text-decoration-none" to="/login">Sign in</Link></p>
         </div>
 
       </form>
