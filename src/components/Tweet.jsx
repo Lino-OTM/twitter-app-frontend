@@ -17,26 +17,28 @@ function Tweet() {
   return (
     <div className="row">
       {tweets.map((tweet) => (
-        <div className="d-flex mt-4">
-          <div className="col-2">
+        <div key={tweet._id} className="d-flex mt-4">
+          <div className="col-1">
             <img
               className="rounded-circle"
-              style={{ width: 50, height: 50 }}
               src={tweet.image}
             />
           </div>
-          <div className="col-10">
-            <div key={tweet._id}>
-              <h6 className="d-inline">
+          <div className="col-11">
+            <div>
+              <h6 className="d-inline fw-bold">
                 {tweet.firstname} {tweet.lastname}
               </h6>
-              <span className="ms-2 fw-light">@{tweet.username}</span>
-              <span className="ms-2 fw-light">6h</span>
+              <span className="ms-2 text-secondary fw-light">
+                @{tweet.username}
+              </span>
+              <span className="ms-2 text-secondary fw-light">· 6h</span>
               <p>{tweet.tweets[0].text}</p>
               <p>
-                <i className="bi bi-suit-heart"></i> cantidad de likes
+                <i className="bi bi-suit-heart-fill text-danger"></i> cantidad de likes
               </p>
             </div>
+            <hr />
           </div>
         </div>
       ))}
@@ -45,18 +47,3 @@ function Tweet() {
 }
 
 export default Tweet;
-
-{
-  /* <article>
-    <header>
-        <img src="" alt="" />
-        <div>
-            <strong></strong>
-            <span> </span>
-        </div>
-    </header><button>Seguir</button>
-    <aside>
-
-    </aside>
-</article> */
-}

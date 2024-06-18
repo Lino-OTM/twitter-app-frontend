@@ -8,6 +8,18 @@
 }
 .sidebarButtons {
   height: 80vh;
-  max-width: 10rem
-
+  max-width: 10rem;
+}
+.border {
+  border: 1px solid #373c4b !important;
+}
+img {
+  width: 50px;
+  height: 50px;
+}
+textarea::placeholder {
+  color: #6c757d !important;
+}
+textarea{
+  height: 40px ;
 }
