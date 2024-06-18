@@ -1,7 +1,7 @@
 function Trending() {
   return (
-    <div className="card bg-transparent text-white">
-      <div className="card-body bg-dark w-75">
+    <div className="trends-container container-fluid bg-transparent rounded-4 overflow-hidden text-white position-fixed">
+      <div className="card-body p-3 bg-dark">
         <h5 className="card-title">What's happening</h5>
         <h6 className="card-subtitle mt-4 mb-2 text-secondary">
           Programming · <span>Trending</span>

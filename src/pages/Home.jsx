@@ -16,7 +16,10 @@ function Home() {
 
   return (
     <>
+      <div className="container">
       <div className="row">
+
+
         <div className="col-2">
           <SideBar />
         </div>
@@ -58,6 +61,7 @@ function Home() {
         <div className="col-3">
           <Trending />
         </div>
+      </div>
       </div>
     </>
   );

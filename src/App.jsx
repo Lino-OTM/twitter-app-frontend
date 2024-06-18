@@ -8,7 +8,7 @@ import { Navigate } from 'react-router-dom';
 import Login from './pages/Login';
 
 function App() {
-	const user = false;
+	const user = true;
 
 	const ProtectedRoute = ({ user, children }) => {
 		if (!user) {

@@ -1,14 +1,11 @@
 #root {
   background-color: #15202b;
 }
-html{
-  font-size: 1rem !important;
-}
 .col-3 {
   height: 100vh !important;
 }
 .sidebarButtons {
-  height: 80vh;
+  height: 75vh;
   max-width: 10rem;
 }
 .border {
@@ -20,6 +17,18 @@ img {
 }
 textarea::placeholder {
   color: #6c757d !important;
+}
+
+.bi-twitter-x {
+  padding: 0 !important;
+}
+
+.trends-container {
+  max-width: 25rem;
+}
+
+.test {
+  outline: 1px solid red !important;
 }
 textarea{
   height: auto !important ;
