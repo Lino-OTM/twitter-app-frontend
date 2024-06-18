@@ -14,7 +14,7 @@
 }
 
 #profile-background-image {
-  background-image: url("https://img.freepik.com/foto-gratis/playa-tropical_74190-188.jpg");
+  background-image: url('https://img.freepik.com/foto-gratis/playa-tropical_74190-188.jpg');
   height: 100px;
   width: 100%;
   background-position: center center;
