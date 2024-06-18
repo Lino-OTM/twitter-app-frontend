@@ -1,0 +1,120 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+.main-container {
+  background-color: #15202b;
+}
+
+.login-form-wrapper {
+  max-width: 124.5rem;
+  height: 86.6rem;
+  border-radius: 3rem;
+}
+
+.login-form-wrapper__aside-section {
+  display: flex;
+  background-color: #28384c;
+  padding: 6.1rem 7rem 4.8rem;
+}
+
+.login-form-wrapper__aside-text {
+  font-size: 3.27rem;
+}
+
+.login-form-wrapper__login-form {
+  padding: 11.2rem 6.4rem 3rem 6.5rem;
+  max-width: 52.7rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.login-form-wrapper__login-form-title {
+  font-size: 3.1rem;
+  letter-spacing: -0.03rem;
+  font-weight: bold;
+  margin-left: 1rem;
+  margin-bottom: 0.8rem;
+}
+
+.login-form-wrapper__login-form-subtitle {
+  font-size: 1.643rem;
+  margin-left: 1rem;
+  margin-bottom: 3.7rem;
+}
+
+.form-control {
+  font-size: 1.69rem;
+  color: #858585;
+  padding: 1rem 1.7rem;
+  margin-bottom: 1.96rem;
+}
+
+.login-form-wrapper__login-form-inputs-wrapper {
+  margin-bottom: 2.8rem;
+}
+
+.login-form-wrapper__form-submit-btn {
+  background-color: #1d9bf0;
+  padding: 1rem;
+  font-size: 1.7rem;
+  margin-bottom: 3.7rem;
+  border-radius: 3rem;
+}
+
+.login-form-wrapper__log-in {
+  font-size: 1.62rem;
+  margin-left: 1.1rem;
+}
+
+.login-form-wrapper__login-form-select-file-wrapper {
+  border: 1px solid #dee2e6;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  margin-bottom: 1.9rem;
+}
+
+.login-form-wrapper__login-form-select-file-input {
+  display: none;
+}
+
+.login-form-wrapper__login-form-select-file-label {
+  font-size: 1.69rem;
+  color: #858585;
+  padding: 1rem 1.6rem;
+  padding-right: 2.1rem;
+  background-color: #e9ecef;
+}
+
+.login-form-wrapper__login-form-selected-file {
+  font-size: 1.74rem;
+  margin-left: 1.5rem;
+  margin-top: 1rem;
+}
+
+@media (min-width: 1021px) and (max-width: 1298px) {
+  .login-form-wrapper {
+    max-width: 107.8rem;
+    height: 87.2rem;
+  }
+}
+
+@media (max-width: 1020px) {
+  .login-form-wrapper__aside-section {
+    display: none;
+  }
+
+  .login-form-wrapper__login-form {
+    max-width: 61.6rem;
+    height: 86.8rem;
+    border-radius: 1.5rem;
+  }
+}
