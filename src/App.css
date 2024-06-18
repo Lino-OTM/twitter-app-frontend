@@ -1,7 +1,9 @@
 #root {
   background-color: #15202b;
 }
-
+html{
+  font-size: 1rem !important;
+}
 .col-3 {
   height: 100vh !important;
 }
@@ -20,5 +22,5 @@ textarea::placeholder {
   color: #6c757d !important;
 }
 textarea{
-  height: 40px ;
+  height: auto !important ;
 }
