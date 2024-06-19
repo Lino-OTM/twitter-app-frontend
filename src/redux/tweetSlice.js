@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const HomeSlice = createSlice({
-  name: "home",
-  initialState: { tweets: [{ text: "hola" }] },
+const tweetSlice = createSlice({
+  name: "tweets",
+  initialState: { tweets: [] },
   reducers: {
     createTweet(state, action) {
       state.tweets.push(action.payload);
@@ -10,6 +10,6 @@ const HomeSlice = createSlice({
   },
 });
 
-const { actions, reducer } = HomeSlice;
+const { actions, reducer } = tweetSlice;
 export const { createTweet } = actions;
 export default reducer;

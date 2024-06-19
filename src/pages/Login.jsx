@@ -3,10 +3,14 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import { useState } from "react";
 
 export const Login = () => {
   const user = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
+
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
 
   return (
     <main className="main-container d-flex justify-content-center align-items-center vh-100">
@@ -49,12 +53,16 @@ export const Login = () => {
               type="text"
               name="username"
               placeholder="Username or email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
 
             <Form.Control
               className="form-control"
               type="password"
               placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </Form.Group>
 

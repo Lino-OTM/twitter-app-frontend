@@ -1,8 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import HomeReducer from "./HomeSlice";
+import TweetSlice from "./tweetSlice";
+import authSlice from "./authSlice";
 
 const store = configureStore({
-  reducer: { home: HomeReducer },
+  reducer: { tweets: TweetSlice, auth: authSlice },
 });
 
 export default store;

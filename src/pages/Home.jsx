@@ -1,41 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SideBar from "../components/SideBar";
 import Tweet from "../components/Tweet";
 import Trending from "../components/Trending";
 import { useSelector, useDispatch } from "react-redux";
-import { createTweet } from "../redux/HomeSlice";
+import { createTweet } from "../redux/tweetSlice";
 import axios from "axios";
 
 function Home() {
-  const home = useSelector((state) => state.home);
+  const tweets = useSelector((state) => state.tweets);
   const [tweet, setTweet] = useState("");
   const [addTweet, setAddTweet] = useState([]);
   const dispatch = useDispatch();
 
-  const handleTweetPost = async (event) => {
-    event.preventDefault();
-    dispatch(createTweet({ text: "pedrito" }));
-
+  const handleAddTweet = async () => {
+    dispatch(createTweet(tweet));
+    setTweet("");
     try {
-      useEffect(() => {
-        const addTweets = async () => {
-          const response = await axios({
-            url: ` http://localhost:3000/tweets`,
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(addTweet),
-          });
-          setAddTweet(response.data);
-        };
-        addTweets();
-      }, []);
+      const response = await axios("http://localhost:3000/tweets", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+    
+        },
+        body: JSON.stringify(tweet),
+      });
 
       if (response.ok) {
-        console.log("Usuario registrado");
+        console.log("tweet creado");
       } else {
-        console.log("No se pudo registrar el usuario");
+        console.log("No se pudo registrar el tweet");
       }
     } catch (error) {
       console.error("Error:", error);
@@ -61,20 +54,18 @@ function Home() {
               </div>
               <div className="col-11">
                 {" "}
-                <form method="post" onSubmit={handleTweetPost}>
-                  <textarea
-                    placeholder="What's happening?"
-                    className="form-control d-flex text-white border-0 bg-transparent"
-                    aria-label="With textarea"
-                    value={tweet}
-                    onChange={(e) => setTweet(e.target.value)}
-                    autoFocus
-                  ></textarea>
-                </form>
+                <textarea
+                  placeholder="What's happening?"
+                  className="form-control d-flex text-white border-0 bg-transparent"
+                  aria-label="With textarea"
+                  value={tweet}
+                  onChange={(e) => setTweet(e.target.value)}
+                  autoFocus
+                ></textarea>
                 <div className="d-flex">
                   <button
                     className="btn btn-primary rounded-pill ms-auto mb-3 mt-3"
-                    onClick={() => dispatch(createTweet({ text: tweet }))}
+                    onClick={handleAddTweet}
                     type="submit"
                   >
                     Tweet
