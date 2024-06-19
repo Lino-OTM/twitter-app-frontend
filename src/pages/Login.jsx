@@ -6,7 +6,7 @@ import Button from "react-bootstrap/Button";
 import { useState } from "react";
 
 export const Login = () => {
-  const user = useSelector((state) => state.auth.user);
+  // const user = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
 
   const [email, setEmail] = useState();

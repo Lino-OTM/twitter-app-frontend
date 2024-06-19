@@ -1,6 +1,7 @@
-import { useState } from "react";
-import "./Register.css";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { useState } from 'react';
+import './Register.css';
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export const Register = () => {
   const [formData, setFormData] = useState({
@@ -13,6 +14,8 @@ export const Register = () => {
   });
   const [navigate, setNavigate] = useState(false);
 
+ 
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -22,18 +25,21 @@ export const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    navigate('/login');
 
-    const response = await fetch("http://localhost:3000/users", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
-    if (navigate) {
-      return <Navigate to={"/login"} />;
+    try {
+      const response = await fetch('http://localhost:3000/users', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+    } catch (error) {
+      console.error('Error:', error);
     }
   };
+
   return (
     <main className="main-container d-flex justify-content-center align-items-center vh-100">
       <div className="sign-up-form-wrapper container-fluid d-flex overflow-hidden">
@@ -144,7 +150,7 @@ export const Register = () => {
               Sign up
             </button>
             <p className="sign-up-form-wrapper__log-in text-center">
-              Already have an account?{" "}
+              Already have an account?{' '}
               <Link className="text-decoration-none" to="/login">
                 Sign in
               </Link>
