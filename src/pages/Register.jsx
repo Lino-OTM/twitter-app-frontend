@@ -1,9 +1,10 @@
-import { useState } from 'react';
-import './Register.css';
-import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import "./Register.css";
+import { Link } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 export const Register = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     firstname: "",
     lastname: "",
@@ -12,9 +13,6 @@ export const Register = () => {
     image: "https://avatars.githubusercontent.com/u/64696952",
     password: "",
   });
-  const [navigate, setNavigate] = useState(false);
-
- 
 
   const handleChange = (e) => {
     setFormData({
@@ -25,18 +23,18 @@ export const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    navigate('/login');
+    navigate("/login");
 
     try {
-      const response = await fetch('http://localhost:3000/users', {
-        method: 'POST',
+      const response = await fetch("http://localhost:3000/users", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
     } catch (error) {
-      console.error('Error:', error);
+      console.error("Error:", error);
     }
   };
 
@@ -150,7 +148,7 @@ export const Register = () => {
               Sign up
             </button>
             <p className="sign-up-form-wrapper__log-in text-center">
-              Already have an account?{' '}
+              Already have an account?{" "}
               <Link className="text-decoration-none" to="/login">
                 Sign in
               </Link>

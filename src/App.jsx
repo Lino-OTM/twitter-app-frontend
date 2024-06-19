@@ -1,12 +1,12 @@
-import { Children } from 'react';
-import './App.css';
-import Tweet from './components/Tweet';
-import Home from './pages/Home';
-import Profile from './pages/Profile';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { Navigate } from 'react-router-dom';
-import Login from './pages/Login';
-import Register from './pages/Register';
+import { Children } from "react";
+import "./App.css";
+import Home from "./pages/Home";
+import Profile from "./pages/Profile";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Navigate } from "react-router-dom";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Authentication from "./components/Authentication";
 
 function App() {
   const user = false;
