@@ -3,24 +3,28 @@ import SideBar from "../components/SideBar";
 import Tweet from "../components/Tweet";
 import Trending from "../components/Trending";
 import { useSelector, useDispatch } from "react-redux";
-import { createTweet} from "../redux/tweetSlice";
+import { createTweet } from "../redux/tweetSlice";
 import axios from "axios";
 
 function Home() {
   const tweets = useSelector((state) => state.tweets);
-  
+  const auth = useSelector((state) => state.auth.id);
+
   const [tweet, setTweet] = useState("");
   const dispatch = useDispatch();
 
   const handleAddTweet = async (e) => {
     e.preventDefault();
-    dispatch(createTweet(tweet));
+    dispatch(createTweet({ id: auth._id, tweets: [tweet] }));
     setTweet("");
 
     try {
-      const response = await axios.post("http://localhost:3000/tweets?user=${user.id}", {
-        text: tweet,
-      });
+      const response = await axios.post(
+        `http://localhost:3000/tweets` /*?user=${user.id} */,
+        {
+          text: tweet,
+        }
+      );
 
       if (response.status === 201) {
         dispatch(createTweet(response.data)); // Assuming response.data contains the new tweet

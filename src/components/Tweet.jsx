@@ -18,7 +18,6 @@ function Tweet() {
       });
       setTweets(response.data);
       dispatch(getAllTweets(response.data));
-      console.log(response.data)
     };
     getTweets();
   }, []);

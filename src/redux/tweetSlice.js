@@ -2,13 +2,13 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const tweetSlice = createSlice({
   name: "tweets",
-  initialState: { tweets: ["sss"] },
+  initialState: { tweets: [] },
   reducers: {
     createTweet(state, action) {
       state.tweets.push(action.payload);
     },
     getAllTweets(state, action) {
-      return { ...state, ...action.payload };
+      return { ...state, tweets: action.payload };
     },
   },
 });
