@@ -9,7 +9,6 @@ import axios from "axios";
 function Home() {
   const tweets = useSelector((state) => state.tweets);
   const [tweet, setTweet] = useState("");
-  const [addTweet, setAddTweet] = useState([]);
   const dispatch = useDispatch();
 
   const handleAddTweet = async (e) => {
@@ -18,19 +17,14 @@ function Home() {
     setTweet("");
 
     try {
-      const token = localStorage.getItem("token");
-
-      const response = await axios("http://localhost:3000/tweets", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        data: JSON.stringify(tweet),
+      const response = await axios.post("http://localhost:3000/tweets", {
+        text: tweet,
       });
 
       if (response.status === 201) {
-        console.log("tweet creado");
+        dispatch(createTweet(response.data)); // Assuming response.data contains the new tweet
+        setTweet("");
+        console.log("Tweet creado");
       } else {
         console.log("No se pudo registrar el tweet");
       }

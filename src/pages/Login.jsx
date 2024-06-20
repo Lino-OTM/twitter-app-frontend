@@ -1,14 +1,16 @@
 import "./Login.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { useState } from "react";
-import axios from "axios";
+import axios from "../redux/axiosConfig";
+import { setToken } from "../redux/authSlice";
 
 export const Login = () => {
   // const user = useSelector((state) => state.auth.user);
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -17,25 +19,21 @@ export const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await axios("http://localhost:3000/tokens", {
+      const response = await axios.post("http://localhost:3000/tokens", {
         email,
         password,
-        method: "POST",
       });
-      const { token, refreshToken } = response.data;
 
       if (response.data.token) {
-        localStorage.setItem("token", token);
-        localStorage.setItem("refreshToken", refreshToken);
-        console.log("Usuario autenticado", response.data.token);
+        dispatch(setToken(response.data.token)); // Almacenar el token en la store
+        navigate("/");
       } else {
-        console.log("No se pudo autenticar el usuario");
+        console.error("Login failed:", response.data.msg);
       }
-    } catch (e) {
-      console.error("Error", e);
+    } catch (error) {
+      console.error("Error:", error);
     }
   };
-
   return (
     <main className="main-container d-flex justify-content-center align-items-center vh-100">
       <div className="login-form-wrapper container-fluid d-flex overflow-hidden">

@@ -7,11 +7,12 @@ import { Navigate } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Authentication from "./components/Authentication";
+import { useSelector } from "react-redux";
 
 function App() {
-  const user = false;
-  const ProtectedRoute = ({ user, children }) => {
-    if (!user) {
+  const token = useSelector((state) => state.auth.token);
+  const ProtectedRoute = ({ children }) => {
+    if (!token) {
       return <Navigate to="/login" />;
     }
     return children;
@@ -33,7 +34,7 @@ function App() {
     {
       path: "/",
       element: (
-        <ProtectedRoute user={user}>
+        <ProtectedRoute>
           <Home />
         </ProtectedRoute>
       ),
@@ -42,7 +43,7 @@ function App() {
     {
       path: "/:username",
       element: (
-        <ProtectedRoute user={user}>
+        <ProtectedRoute>
           <Login />
         </ProtectedRoute>
       ),
