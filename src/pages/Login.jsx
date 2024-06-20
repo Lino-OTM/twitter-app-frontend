@@ -4,13 +4,37 @@ import { useDispatch, useSelector } from "react-redux";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { useState } from "react";
+import axios from "axios";
 
 export const Login = () => {
   // const user = useSelector((state) => state.auth.user);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios("http://localhost:3000/tokens", {
+        email,
+        password,
+        method: "POST",
+      });
+      const { token, refreshToken } = response.data;
+
+      if (response.data.token) {
+        localStorage.setItem("token", token);
+        localStorage.setItem("refreshToken", refreshToken);
+        console.log("Usuario autenticado", response.data.token);
+      } else {
+        console.log("No se pudo autenticar el usuario");
+      }
+    } catch (e) {
+      console.error("Error", e);
+    }
+  };
 
   return (
     <main className="main-container d-flex justify-content-center align-items-center vh-100">
@@ -37,6 +61,7 @@ export const Login = () => {
           method="POST"
           className="login-form-wrapper__login-form bg-white d-flex flex-column container-fluid"
           action="/"
+          onSubmit={handleLogin}
         >
           <Form.Group className="login-form-wrapper__login-form-top-section">
             <Form.Text className="login-form-wrapper__login-form-title">

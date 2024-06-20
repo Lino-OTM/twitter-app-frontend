@@ -12,20 +12,24 @@ function Home() {
   const [addTweet, setAddTweet] = useState([]);
   const dispatch = useDispatch();
 
-  const handleAddTweet = async () => {
+  const handleAddTweet = async (e) => {
+    e.preventDefault();
     dispatch(createTweet(tweet));
     setTweet("");
+
     try {
+      const token = localStorage.getItem("token");
+
       const response = await axios("http://localhost:3000/tweets", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-    
+          Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify(tweet),
+        data: JSON.stringify(tweet),
       });
 
-      if (response.ok) {
+      if (response.status === 201) {
         console.log("tweet creado");
       } else {
         console.log("No se pudo registrar el tweet");
