@@ -7,12 +7,12 @@ const tweetSlice = createSlice({
     createTweet(state, action) {
       state.tweets.push(action.payload);
     },
-    getAllTweets(state, action) {
+    storeTweets(state, action) {
       state.tweets = action.payload;
     },
   },
 });
 
 const { actions, reducer } = tweetSlice;
-export const { createTweet, getAllTweets } = actions;
+export const { createTweet, storeTweets } = actions;
 export default reducer;

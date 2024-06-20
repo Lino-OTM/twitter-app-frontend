@@ -3,8 +3,9 @@ import SideBar from "../components/SideBar";
 import Tweet from "../components/Tweet";
 import Trending from "../components/Trending";
 import { useSelector, useDispatch } from "react-redux";
-import { createTweet, getAllTweets } from "../redux/tweetSlice";
+import { createTweet, storeTweets } from "../redux/tweetSlice";
 import axios from "axios";
+import { nanoid } from "@reduxjs/toolkit";
 
 function Home() {
   const newTweet = useSelector((state) => state.tweets);
@@ -18,7 +19,7 @@ function Home() {
     const getTweets = async () => {
       try {
         const response = await axios.get("/api/tweets");
-        dispatch(getAllTweets(response.data));  // Despacha la acción con los datos obtenidos
+        dispatch(storeTweets(response.data)); // Despacha la acción con los datos obtenidos
       } catch (error) {
         console.error("Error fetching tweets:", error);
       }
@@ -29,16 +30,18 @@ function Home() {
 
   const handleAddTweet = async (e) => {
     e.preventDefault();
-    dispatch(createTweet({ id: auth._id, tweets: [tweet] }));
+    dispatch(
+      createTweet({
+        _id: auth._id,
+        tweets: [{ id: nanoid(), text: tweet, likes: [] }],
+      })
+    );
     setTweet("");
 
     try {
-      const response = await axios.post(
-        `http://localhost:3000/tweets`,
-        { text: tweet }
-      );
-
-      console.log(response.data)
+      const response = await axios.post(`http://localhost:3000/tweets`, {
+        text: tweet,
+      });
 
       if (response.status === 200) {
         console.log("Tweet creado");

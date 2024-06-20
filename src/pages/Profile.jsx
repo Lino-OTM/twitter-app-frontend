@@ -4,12 +4,11 @@ import Trending from "../components/Trending";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { getAllTweets } from "../redux/tweetSlice";
+import { storeTweets } from "../redux/tweetSlice";
 
 const Profile = () => {
   const params = useParams();
   const dispatch = useDispatch();
-
   const allTweets = useSelector((state) => state.tweets.tweets);
   const [user, setUser] = useState({});
 
@@ -19,9 +18,8 @@ const Profile = () => {
         url: `http://localhost:3000/users/${params.username}`,
         method: "get",
       });
-      dispatch(getAllTweets(response.data.tweets));
+      dispatch(storeTweets(response.data.tweets));
       setUser(response.data);
-
     };
     getUserTweets();
   }, []);
@@ -54,9 +52,7 @@ const Profile = () => {
           </div>
           <p>@{user.username}</p>
           <p>
-            {user.description
-              ? user.description
-              : "No tengo una biografia pa ksyo"}
+            {user.description ? user.description : "Agrega una biografia..."}
           </p>
           <div className="mb-4">
             <span className="border-bottom border-info border-3">Tweets</span>

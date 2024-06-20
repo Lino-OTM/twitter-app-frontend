@@ -3,7 +3,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { getAllTweets } from "../redux/tweetSlice";
+import { storeTweets } from "../redux/tweetSlice";
 
 function Tweet() {
   const tweetList = useSelector((state) => state.tweets);
@@ -17,7 +17,7 @@ function Tweet() {
         method: "get",
       });
       setTweets(response.data);
-      dispatch(getAllTweets(response.data));
+      dispatch(storeTweets(response.data));
     };
     getTweets();
   }, []);
