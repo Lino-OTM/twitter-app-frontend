@@ -18,7 +18,7 @@ function SideBar() {
         </li>
 
         <li className="nav-item d-flex">
-          <Link to={`/${auth._id}`} className="nav-link text-white">
+          <Link to={`/${auth.username}`} className="nav-link text-white">
             <i className="bi bi-person"></i> Profile
           </Link>
         </li>

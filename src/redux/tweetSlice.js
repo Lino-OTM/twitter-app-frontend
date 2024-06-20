@@ -8,7 +8,7 @@ const tweetSlice = createSlice({
       state.tweets.push(action.payload);
     },
     getAllTweets(state, action) {
-      return { ...state, tweets: action.payload };
+      state.tweets = action.payload;
     },
   },
 });

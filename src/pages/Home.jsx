@@ -3,15 +3,29 @@ import SideBar from "../components/SideBar";
 import Tweet from "../components/Tweet";
 import Trending from "../components/Trending";
 import { useSelector, useDispatch } from "react-redux";
-import { createTweet } from "../redux/tweetSlice";
+import { createTweet, getAllTweets } from "../redux/tweetSlice";
 import axios from "axios";
 
 function Home() {
-  const tweets = useSelector((state) => state.tweets);
+  const newTweet = useSelector((state) => state.tweets);
+  const allTweets = useSelector((state) => state.tweets.tweets);
   const auth = useSelector((state) => state.auth.id);
 
   const [tweet, setTweet] = useState("");
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    const getTweets = async () => {
+      try {
+        const response = await axios.get("/api/tweets");
+        dispatch(getAllTweets(response.data));  // Despacha la acción con los datos obtenidos
+      } catch (error) {
+        console.error("Error fetching tweets:", error);
+      }
+    };
+
+    getTweets();
+  }, [dispatch]);
 
   const handleAddTweet = async (e) => {
     e.preventDefault();
@@ -20,15 +34,13 @@ function Home() {
 
     try {
       const response = await axios.post(
-        `http://localhost:3000/tweets` /*?user=${user.id} */,
-        {
-          text: tweet,
-        }
+        `http://localhost:3000/tweets`,
+        { text: tweet }
       );
 
-      if (response.status === 201) {
-        dispatch(createTweet(response.data)); // Assuming response.data contains the new tweet
-        setTweet("");
+      console.log(response.data)
+
+      if (response.status === 200) {
         console.log("Tweet creado");
       } else {
         console.log("No se pudo registrar el tweet");
