@@ -3,11 +3,12 @@ import SideBar from "../components/SideBar";
 import Tweet from "../components/Tweet";
 import Trending from "../components/Trending";
 import { useSelector, useDispatch } from "react-redux";
-import { createTweet } from "../redux/tweetSlice";
+import { createTweet} from "../redux/tweetSlice";
 import axios from "axios";
 
 function Home() {
   const tweets = useSelector((state) => state.tweets);
+  
   const [tweet, setTweet] = useState("");
   const dispatch = useDispatch();
 
@@ -17,7 +18,7 @@ function Home() {
     setTweet("");
 
     try {
-      const response = await axios.post("http://localhost:3000/tweets", {
+      const response = await axios.post("http://localhost:3000/tweets?user=${user.id}", {
         text: tweet,
       });
 

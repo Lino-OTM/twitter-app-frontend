@@ -1,9 +1,10 @@
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 function SideBar() {
+  const auth = useSelector((state) => state.auth.id);
   return (
     <>
       <ul className="nav flex-column position-fixed">
-
         <li className="nav-item d-flex">
           <Link to={"/"} className="nav-link text-white" aria-current="page">
             <i className="bi bi-twitter-x p-0"></i>
@@ -17,7 +18,7 @@ function SideBar() {
         </li>
 
         <li className="nav-item d-flex">
-          <Link to={"/:username"} className="nav-link text-white">
+          <Link to={`/${auth._id}`} className="nav-link text-white">
             <i className="bi bi-person"></i> Profile
           </Link>
         </li>
@@ -35,9 +36,9 @@ function SideBar() {
         </li>
 
         <div className="d-flex container flex-column justify-content-between ms-0 sidebarButtons">
-        <button className="btn btn-primary rounded-pill mt-2">Tweet</button>
-        <button className="btn btn-danger rounded-pill">Logout</button>
-      </div>
+          <button className="btn btn-primary rounded-pill mt-2">Tweet</button>
+          <button className="btn btn-danger rounded-pill">Logout</button>
+        </div>
       </ul>
     </>
   );

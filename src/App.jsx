@@ -44,7 +44,7 @@ function App() {
       path: "/:username",
       element: (
         <ProtectedRoute>
-          <Login />
+          <Profile />
         </ProtectedRoute>
       ),
     },

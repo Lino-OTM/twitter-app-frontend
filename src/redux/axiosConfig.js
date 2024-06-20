@@ -1,5 +1,5 @@
 import axios from "axios";
-import store from "./storeConfig"; // Asegúrate de usar la ruta correcta a tu store
+import store from "./storeConfig";
 
 // Configurar el interceptor
 axios.interceptors.request.use(

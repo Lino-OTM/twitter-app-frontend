@@ -5,7 +5,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { useState } from "react";
 import axios from "../redux/axiosConfig";
-import { setToken } from "../redux/authSlice";
+import { setToken,setUser } from "../redux/authSlice";
 
 export const Login = () => {
   // const user = useSelector((state) => state.auth.user);
@@ -17,7 +17,6 @@ export const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
     try {
       const response = await axios.post("http://localhost:3000/tokens", {
         email,
@@ -26,6 +25,7 @@ export const Login = () => {
 
       if (response.data.token) {
         dispatch(setToken(response.data.token)); // Almacenar el token en la store
+        dispatch(setUser(response.data.user));
         navigate("/");
       } else {
         console.error("Login failed:", response.data.msg);
