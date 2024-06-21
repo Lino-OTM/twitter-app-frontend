@@ -5,10 +5,10 @@ const authSlice = createSlice({
   initialState: { token: "" },
   reducers: {
     setToken: (state, action) => {
-      state.token = action.payload;
+      return action.payload;
     },
     setUser: (state, action) => {
-      state.id = action.payload;
+      return action.payload;
     },
   },
 });

@@ -1,7 +1,3 @@
-
-
-
-
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { createTweet, storeTweets } from "../redux/tweetSlice";
@@ -15,7 +11,6 @@ import Trending from "../components/Trending";
 function Home() {
   const allTweets = useSelector((state) => state.tweets.tweets);
   const user = useSelector((state) => state.auth);
-  
 
   const [tweet, setTweet] = useState("");
   const dispatch = useDispatch();
@@ -24,23 +19,18 @@ function Home() {
     const getTweets = async () => {
       try {
         const response = await axios.get("http://localhost:3000/tweets");
-        dispatch(storeTweets(response.data)); // Despacha la acción con los datos obtenidos
+        dispatch(storeTweets(response.data));
       } catch (error) {
         console.error("Error fetching tweets:", error);
       }
     };
 
     getTweets();
-  }, [dispatch]);
+  }, []);
 
   const handleAddTweet = async (e) => {
     e.preventDefault();
-    dispatch(
-      createTweet({
-        _id: user.id._id,
-        tweets: [{ id: nanoid(), text: tweet, likes: [] }],
-      })
-    );
+
     setTweet("");
 
     try {
@@ -49,6 +39,7 @@ function Home() {
       });
 
       if (response.status === 200) {
+        dispatch(createTweet({ ...response.data }));
         console.log("Tweet creado");
       } else {
         console.log("No se pudo registrar el tweet");
@@ -112,5 +103,3 @@ function Home() {
 }
 
 export default Home;
-
-

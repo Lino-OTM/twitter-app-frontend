@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 function SideBar() {
-  const auth = useSelector((state) => state.auth.id);
+  const auth = useSelector((state) => state.auth);
   return (
     <>
       <ul className="nav flex-column position-fixed">

@@ -5,7 +5,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { useState } from "react";
 import axios from "../redux/axiosConfig";
-import { setToken,setUser } from "../redux/authSlice";
+import { setToken, setUser } from "../redux/authSlice";
 
 export const Login = () => {
   // const user = useSelector((state) => state.auth.user);
@@ -24,8 +24,8 @@ export const Login = () => {
       });
 
       if (response.data.token) {
-        dispatch(setToken(response.data.token)); // Almacenar el token en la store
-        dispatch(setUser(response.data.user));
+        dispatch(setToken({token: response.data.token,  ...response.data.user})); // Almacenar el token en la store
+       
         navigate("/");
       } else {
         console.error("Login failed:", response.data.msg);
