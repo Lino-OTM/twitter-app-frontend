@@ -1,17 +1,16 @@
-import { useState } from "react";
-import "./Register.css";
-import { Link } from "react-router-dom";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import './Register.css';
 
 export const Register = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    firstname: "",
-    lastname: "",
-    email: "",
-    username: "",
-    image: "https://avatars.githubusercontent.com/u/64696952",
-    password: "",
+    firstname: '',
+    lastname: '',
+    email: '',
+    username: '',
+    image: 'https://avatars.githubusercontent.com/u/64696952',
+    password: '',
   });
 
   const handleChange = (e) => {
@@ -23,23 +22,23 @@ export const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    navigate("/login");
+    navigate('/login');
 
     try {
-      const response = await fetch("http://localhost:3000/users", {
-        method: "POST",
+      const response = await fetch('http://localhost:3000/users', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData),
       });
     } catch (error) {
-      console.error("Error:", error);
+      console.error('Error:', error);
     }
   };
 
   return (
-    <main className="main-container d-flex justify-content-center align-items-center vh-100">
+    <main className="main-container d-flex justify-content-center align-items-center min-vh-100">
       <div className="sign-up-form-wrapper container-fluid d-flex overflow-hidden">
         <aside className="sign-up-form-wrapper__aside-section flex-column justify-content-between container-fluid">
           <svg
@@ -124,6 +123,12 @@ export const Register = () => {
               >
                 Choose file
               </label>
+              <label
+                className="sign-up-form-wrapper__register-form-select-file-label"
+                htmlFor="files"
+              >
+                Browse
+              </label>
               <p className="sign-up-form-wrapper__register-form-selected-file">
                 No file choosen
               </p>
@@ -148,8 +153,8 @@ export const Register = () => {
               Sign up
             </button>
             <p className="sign-up-form-wrapper__log-in text-center">
-              Already have an account?{" "}
-              <Link className="text-decoration-none" to="/login">
+              Already have an account?
+              <Link className="text-decoration-none text-info ms-2" to="/login">
                 Sign in
               </Link>
             </p>

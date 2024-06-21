@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { createTweet, storeTweets } from "../redux/tweetSlice";
+import { nanoid } from "@reduxjs/toolkit";
+import axios from "axios";
+// Components
 import SideBar from "../components/SideBar";
 import Tweet from "../components/Tweet";
 import Trending from "../components/Trending";
-import { useSelector, useDispatch } from "react-redux";
-import { createTweet, storeTweets } from "../redux/tweetSlice";
-import axios from "axios";
-import { nanoid } from "@reduxjs/toolkit";
 
 function Home() {
   const newTweet = useSelector((state) => state.tweets);

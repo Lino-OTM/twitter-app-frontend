@@ -1,13 +1,14 @@
-import { Children } from "react";
-import "./App.css";
-import Home from "./pages/Home";
-import Profile from "./pages/Profile";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Navigate } from "react-router-dom";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import Authentication from "./components/Authentication";
-import { useSelector } from "react-redux";
+import { Children } from 'react';
+import { useSelector } from 'react-redux';
+import { Navigate } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+// Pages
+import Home from './pages/Home';
+import Profile from './pages/Profile';
+import Login from './pages/Login';
+import Register from './pages/Register';
+//Components
+import Authentication from './components/Authentication';
 
 function App() {
   const token = useSelector((state) => state.auth.token);
@@ -15,33 +16,32 @@ function App() {
     if (!token) {
       return <Navigate to="/login" />;
     }
-    return children;
+    return Children;
   };
 
   const router = createBrowserRouter([
     {
-      path: "/login",
+      path: '/login',
       element: <Login />,
     },
     {
-      path: "/auth",
+      path: '/auth',
       element: <Authentication />,
     },
     {
-      path: "/registro",
+      path: '/register',
       element: <Register />,
     },
     {
-      path: "/",
+      path: '/',
       element: (
         <ProtectedRoute>
           <Home />
         </ProtectedRoute>
       ),
     },
-
     {
-      path: "/:username",
+      path: '/:username',
       element: (
         <ProtectedRoute>
           <Profile />

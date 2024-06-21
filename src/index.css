@@ -1,16 +1,17 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+/* Estilos globales */
+#root {
+  background-color: #15202b;
+}
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+html {
+  font-size: 62.5%;
 }
 
 #profile-background-image {
@@ -26,4 +27,37 @@
   position: absolute;
   top: 70px;
   left: 10px;
+}
+
+.col-3 {
+  height: 100vh !important;
+}
+.sidebarButtons {
+  height: 75vh;
+  max-width: 10rem;
+}
+.border {
+  border: 1px solid #373c4b !important;
+}
+img {
+  width: 50px;
+  height: 50px;
+}
+textarea::placeholder {
+  color: #6c757d !important;
+}
+
+.bi-twitter-x {
+  padding: 0 !important;
+}
+
+.trends-container {
+  max-width: 25rem;
+}
+
+.test {
+  outline: 1px solid red !important;
+}
+textarea {
+  height: auto !important ;
 }
