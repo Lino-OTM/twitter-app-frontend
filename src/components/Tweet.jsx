@@ -34,20 +34,24 @@ function Tweet() {
 
   return (
     <div className="row">
-      <div className="d-flex mt-4">
-        <div className="col-1">
-          <img className="rounded-circle" src={tweet.user.image} />
-        </div>
-        <div className="col-11">
-          <div>
-            <h6 className="d-inline fw-bold">
-              {tweet.user.firstname} {tweet.user.lastname}
-            </h6>
-            <span className="ms-2 text-secondary fw-light">
-              @{tweet.user.username}
-            </span>
-            <span className="ms-2 text-secondary fw-light">· 6h</span>
-            <p>{tweet.t}</p>
+    <div className="d-flex mt-4">
+      <div className="col-1">
+        <img
+          className="rounded-circle"
+  
+          alt="imagen de @user"
+        />
+      </div>
+      <div className="col-11">
+        <div>
+          <h6 className="d-inline fw-bold">
+         hola pedrito
+          </h6>
+          <span className="ms-2 text-secondary fw-light">
+            @pedrito
+          </span>
+          <span className="ms-2 text-secondary fw-light">· 6h</span>
+          <p>tweet 1 </p>
             <p>
               <i
                 // className={

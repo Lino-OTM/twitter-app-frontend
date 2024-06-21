@@ -1,3 +1,7 @@
+
+
+
+
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { createTweet, storeTweets } from "../redux/tweetSlice";
@@ -9,9 +13,9 @@ import Tweet from "../components/Tweet";
 import Trending from "../components/Trending";
 
 function Home() {
-  const newTweet = useSelector((state) => state.tweets);
   const allTweets = useSelector((state) => state.tweets.tweets);
-  const auth = useSelector((state) => state.auth.id);
+  const user = useSelector((state) => state.auth);
+  
 
   const [tweet, setTweet] = useState("");
   const dispatch = useDispatch();
@@ -33,7 +37,7 @@ function Home() {
     e.preventDefault();
     dispatch(
       createTweet({
-        _id: auth._id,
+        _id: user.id._id,
         tweets: [{ id: nanoid(), text: tweet, likes: [] }],
       })
     );
@@ -108,3 +112,5 @@ function Home() {
 }
 
 export default Home;
+
+

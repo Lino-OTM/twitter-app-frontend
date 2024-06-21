@@ -19,6 +19,8 @@ const Profile = () => {
         method: 'get',
       });
       dispatch(storeTweets(response.data.tweets));
+      console.log(response.data.tweets)
+      console.log(response.data) //error en la estructura , figura username y no user como en home
       setUser(response.data);
     };
     getUserTweets();
