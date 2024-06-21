@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import axios from "axios";
-import { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { storeTweets } from "../redux/tweetSlice";
+import React, { useState } from 'react';
+import axios from 'axios';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { storeTweets } from '../redux/tweetSlice';
 
 function Tweet() {
   const tweetList = useSelector((state) => state.tweets);
@@ -14,7 +14,7 @@ function Tweet() {
     const getTweets = async () => {
       const response = await axios({
         url: `http://localhost:3000/users`,
-        method: "get",
+        method: 'get',
       });
       setTweets(response.data);
       dispatch(storeTweets(response.data));

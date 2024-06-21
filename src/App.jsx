@@ -16,32 +16,33 @@ function App() {
     if (!token) {
       return <Navigate to="/login" />;
     }
-    return Children;
+    return children;
   };
 
   const router = createBrowserRouter([
     {
-      path: '/login',
+      path: "/login",
       element: <Login />,
     },
     {
-      path: '/auth',
+      path: "/auth",
       element: <Authentication />,
     },
     {
-      path: '/register',
+      path: "/registro",
       element: <Register />,
     },
     {
-      path: '/',
+      path: "/",
       element: (
         <ProtectedRoute>
           <Home />
         </ProtectedRoute>
       ),
     },
+
     {
-      path: '/:username',
+      path: "/:username",
       element: (
         <ProtectedRoute>
           <Profile />
