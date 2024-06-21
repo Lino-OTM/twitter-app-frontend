@@ -19,7 +19,7 @@ function Home() {
   useEffect(() => {
     const getTweets = async () => {
       try {
-        const response = await axios.get("/api/tweets");
+        const response = await axios.get("http://localhost:3000/tweets");
         dispatch(storeTweets(response.data)); // Despacha la acción con los datos obtenidos
       } catch (error) {
         console.error("Error fetching tweets:", error);
@@ -92,7 +92,9 @@ function Home() {
                 </div>
               </div>
               <hr />
-              <Tweet />
+              {allTweets.map((tweet) => (
+                <Tweet key={tweet._id} tweet={tweet} />
+              ))}
               <hr />
             </div>
           </div>
