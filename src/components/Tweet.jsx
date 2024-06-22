@@ -1,35 +1,41 @@
-import React, { useState } from "react";
 import axios from "axios";
-import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { storeTweets, toggleTweetLike } from "../redux/tweetSlice";
+import { removeTweet, toggleTweetLike } from "../redux/tweetSlice";
 
 function Tweet({ tweet }) {
   const token = useSelector((state) => state.auth.token);
   const user = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
-  const handleLike = () => {
-    const response = axios({
-      url: `http://localhost:3000/tweets/${tweet._id}/likes`,
-      method: "PATCH",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    dispatch(toggleTweetLike({ userId: user._id, tweetId: tweet._id }));
+  const handleLike = async () => {
+    try {
+      const response = await axios({
+        url: `${import.meta.env.VITE_API_URL}/tweets/${tweet._id}/likes`,
+        method: "PATCH",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      dispatch(toggleTweetLike({ userId: user._id, tweetId: tweet._id }));
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
 
-  const handleDelete = () => {
-    const response = axios({
-      url: `http://localhost:3000/tweets/${tweet._id}`,
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    dispatch(removeTweet(tweet._id));
+  const handleDelete = async () => {
+    try {
+      const response = await axios({
+        url: `${import.meta.env.VITE_API_URL}/tweets/${tweet._id}`,
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      dispatch(removeTweet(tweet._id));
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
 
   return (

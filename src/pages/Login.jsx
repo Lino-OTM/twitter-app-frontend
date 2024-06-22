@@ -1,31 +1,33 @@
 import "./Login.css";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { useState } from "react";
 import axios from "../redux/axiosConfig";
-import { setToken, setUser } from "../redux/authSlice";
+import { setToken } from "../redux/authSlice";
 
 export const Login = () => {
-  // const user = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:3000/tokens", {
-        email,
-        password,
-      });
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/tokens`,
+        {
+          email,
+          password,
+        }
+      );
 
       if (response.data.token) {
-        dispatch(setToken({token: response.data.token,  ...response.data.user})); // Almacenar el token en la store
-       
+        dispatch(
+          setToken({ token: response.data.token, ...response.data.user })
+        ); // Almacenar el token en la store
         navigate("/");
       } else {
         console.error("Login failed:", response.data.msg);
@@ -34,6 +36,7 @@ export const Login = () => {
       console.error("Error:", error);
     }
   };
+
   return (
     <main className="main-container d-flex justify-content-center align-items-center vh-100">
       <div className="login-form-wrapper container-fluid d-flex overflow-hidden">

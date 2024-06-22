@@ -10,7 +10,7 @@ export const Register = () => {
     lastname: "",
     email: "",
     username: "",
-    image: "https://avatars.githubusercontent.com/u/64696952",
+    image: "",
     password: "",
   });
 
@@ -26,7 +26,7 @@ export const Register = () => {
     navigate("/login");
 
     try {
-      const response = await fetch("http://localhost:3000/users", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/users`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -116,6 +116,8 @@ export const Register = () => {
                 type="file"
                 id="files"
                 name="files"
+                value={formData.image}
+                onChange={handleChange}
                 className="sign-up-form-wrapper__register-form-select-file-input"
               />
               <label

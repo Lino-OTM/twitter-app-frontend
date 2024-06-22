@@ -15,12 +15,16 @@ const Profile = () => {
 
   useEffect(() => {
     const getUserTweets = async () => {
-      const response = await axios({
-        url: `http://localhost:3000/users/${params.username}`,
-        method: "get",
-      });
-      dispatch(storeTweets(response.data.tweets));
-      setUser(response.data);
+      try {
+        const response = await axios({
+          url: `${import.meta.env.VITE_API_URL}/users/${params.username}`,
+          method: "get",
+        });
+        dispatch(storeTweets(response.data.tweets));
+        setUser(response.data);
+      } catch (error) {
+        console.error("Error:", error);
+      }
     };
     getUserTweets();
   }, []);

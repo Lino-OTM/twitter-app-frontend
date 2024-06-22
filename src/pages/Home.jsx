@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { createTweet, storeTweets } from "../redux/tweetSlice";
-import { nanoid } from "@reduxjs/toolkit";
 import axios from "axios";
 // Components
 import SideBar from "../components/SideBar";
@@ -18,7 +17,9 @@ function Home() {
   useEffect(() => {
     const getTweets = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/tweets");
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/tweets`
+        );
         dispatch(storeTweets(response.data));
       } catch (error) {
         console.error("Error fetching tweets:", error);
@@ -34,9 +35,12 @@ function Home() {
     setTweet("");
 
     try {
-      const response = await axios.post(`http://localhost:3000/tweets`, {
-        text: tweet,
-      });
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/tweets`,
+        {
+          text: tweet,
+        }
+      );
 
       if (response.status === 200) {
         dispatch(createTweet({ ...response.data }));
@@ -61,10 +65,7 @@ function Home() {
             <div className="row">
               <div className="col-1">
                 {" "}
-                <img
-                  className="rounded-circle"
-                  src="https://www.shutterstock.com/image-vector/young-smiling-man-avatar-brown-600nw-2261401207.jpg"
-                />
+                <img className="rounded-circle" src={user.image} />
               </div>
               <div className="col-11">
                 {" "}
