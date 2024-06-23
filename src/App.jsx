@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import ErrorMsg from "./components/ErrorMsg";
 
 function App() {
   const token = useSelector((state) => state.auth.token);
@@ -41,6 +42,10 @@ function App() {
           <Profile />
         </ProtectedRoute>
       ),
+    },
+    {
+      path: "*",
+      element: <ErrorMsg />,
     },
   ]);
 

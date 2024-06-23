@@ -31,7 +31,6 @@ function Home() {
 
   const handleAddTweet = async (e) => {
     e.preventDefault();
-
     setTweet("");
 
     try {

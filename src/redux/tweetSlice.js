@@ -5,7 +5,7 @@ const tweetSlice = createSlice({
   initialState: [],
   reducers: {
     createTweet(state, action) {
-      state.tweets.unshift(action.payload);
+      state.unshift(action.payload);
     },
 
     storeTweets(state, action) {
@@ -13,7 +13,7 @@ const tweetSlice = createSlice({
     },
 
     toggleTweetLike(state, action) {
-      const selectedTweet = state.tweets.find(
+      const selectedTweet = state.find(
         (t) => t._id === action.payload.tweetId
       );
       if (selectedTweet.likes.includes(action.payload.userId)) {

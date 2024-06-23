@@ -44,18 +44,18 @@ function Tweet({ tweet }) {
       <div className="d-flex mt-3">
         <div className="col-1 me-2">
           <img
-            src={tweet.user.image}
+            src={user.image}
             className="rounded-circle"
-            alt="imagen de @user"
+            alt={`imagen de ${user.username}`}
           />
         </div>
         <div className="col-11">
           <div>
             <h6 className="d-inline fw-bold">
-              {tweet.user.firstname} {tweet.user.lastname}
+              {user.firstname} {user.lastname}
             </h6>
             <span className="ms-2 text-secondary fw-light">
-              @{tweet.user.username}
+              @{user.username}
             </span>
             <span className="ms-2 text-secondary fw-light">· 6h</span>
             <p>{tweet.text}</p>

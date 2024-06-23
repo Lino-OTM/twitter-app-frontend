@@ -60,3 +60,6 @@ textarea {
 .i-hover {
   cursor: pointer;
 }
+.error-container {
+  height: 100vh;
+}

@@ -10,7 +10,7 @@ import Tweet from "../components/Tweet";
 const Profile = () => {
   const params = useParams();
   const dispatch = useDispatch();
-  const allTweets = useSelector((state) => state.tweets.tweets);
+  const allTweets = useSelector((state) => state.tweets);
   const [user, setUser] = useState({});
 
   useEffect(() => {
