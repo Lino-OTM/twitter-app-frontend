@@ -1,13 +1,11 @@
-import { useSelector } from 'react-redux';
-import { Navigate } from 'react-router-dom';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { useSelector } from "react-redux";
+import { Navigate } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 // Pages
-import Home from './pages/Home';
-import Profile from './pages/Profile';
-import Login from './pages/Login';
-import Register from './pages/Register';
-//Components
-import Authentication from './components/Authentication';
+import Home from "./pages/Home";
+import Profile from "./pages/Profile";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 function App() {
   const token = useSelector((state) => state.auth.token);
@@ -22,10 +20,6 @@ function App() {
     {
       path: "/login",
       element: <Login />,
-    },
-    {
-      path: "/auth",
-      element: <Authentication />,
     },
     {
       path: "/registro",
