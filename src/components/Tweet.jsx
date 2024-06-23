@@ -6,6 +6,7 @@ import { removeTweet, toggleTweetLike } from "../redux/tweetSlice";
 function Tweet({ tweet }) {
   const token = useSelector((state) => state.auth.token);
   const user = useSelector((state) => state.auth);
+  console.log(tweet);
   const dispatch = useDispatch();
 
   const handleLike = async () => {
@@ -58,20 +59,22 @@ function Tweet({ tweet }) {
             </span>
             <span className="ms-2 text-secondary fw-light">· 6h</span>
             <p>{tweet.text}</p>
-            <p>
-              <i
-                className={
-                  tweet.likes.includes(user._id)
-                    ? "bi bi-suit-heart-fill text-danger"
-                    : "bi bi-suit-heart-fill text-secondary"
-                }
-                onClick={handleLike}
-              ></i>
-              cantidad de likes
-              <i className="bi bi-trash" onClick={handleDelete}>
-                Borrar
-              </i>
-            </p>
+            <div className="d-flex justify-content-between">
+              <p>
+                <i
+                  className={
+                    tweet.likes.includes(user._id)
+                      ? "bi bi-suit-heart-fill text-danger"
+                      : "bi bi-suit-heart-fill text-secondary"
+                  }
+                  onClick={handleLike}
+                >
+                  {" "}
+                  {tweet.likes.length}{" "}
+                </i>
+              </p>
+              <i className="bi bi-trash" onClick={handleDelete}></i>
+            </div>
           </div>
           <hr />
         </div>
