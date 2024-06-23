@@ -12,7 +12,7 @@ const Profile = () => {
   const params = useParams();
   const dispatch = useDispatch();
   const allTweets = useSelector((state) => state.tweets);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({});
 
   useEffect(() => {
     const getUserTweets = async () => {
@@ -32,7 +32,7 @@ const Profile = () => {
 
   return (
     <>
-      {user ? (
+      <div className="container">
         <div className="row">
           <div className="col-3">
             <SideBar />
@@ -52,7 +52,6 @@ const Profile = () => {
             </div>
             <div className="d-flex justify-content-between">
               <h5 className="">{user.firstname}</h5>
-
               <div>
                 <span>Following 10</span> <span>Followers 20</span>
               </div>
@@ -72,9 +71,7 @@ const Profile = () => {
             <Trending />
           </div>
         </div>
-      ) : (
-        <ErrorMsg />
-      )}
+      </div>
     </>
   );
 };
