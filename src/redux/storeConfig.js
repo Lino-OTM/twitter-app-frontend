@@ -11,12 +11,12 @@ import {
 import storage from "redux-persist/lib/storage";
 import { combineReducers } from "redux";
 
-import TweetSlice from "./tweetSlice";
-import authSlice from "./authSlice";
+import tweetReducer from "./tweetSlice";
+import authReducer from "./authSlice";
 
 const rootReducer = combineReducers({
-  tweets: TweetSlice,
-  auth: authSlice,
+  tweets: tweetReducer,
+  auth: authReducer,
 });
 
 const persistConfig = { key: "root", storage };

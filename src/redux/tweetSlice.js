@@ -2,14 +2,14 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const tweetSlice = createSlice({
   name: "tweets",
-  initialState: { tweets: [] },
+  initialState: [],
   reducers: {
     createTweet(state, action) {
       state.tweets.unshift(action.payload);
     },
 
     storeTweets(state, action) {
-      state.tweets = action.payload;
+      return state= action.payload;
     },
 
     toggleTweetLike(state, action) {

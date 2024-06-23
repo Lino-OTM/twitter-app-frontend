@@ -6,7 +6,7 @@ import { removeTweet, toggleTweetLike } from "../redux/tweetSlice";
 function Tweet({ tweet }) {
   const token = useSelector((state) => state.auth.token);
   const user = useSelector((state) => state.auth);
-  console.log(tweet);
+  
   const dispatch = useDispatch();
 
   const handleLike = async () => {
@@ -41,8 +41,8 @@ function Tweet({ tweet }) {
 
   return (
     <div className="row">
-      <div className="d-flex mt-4">
-        <div className="col-1">
+      <div className="d-flex mt-3">
+        <div className="col-1 me-2">
           <img
             src={tweet.user.image}
             className="rounded-circle"
@@ -64,8 +64,8 @@ function Tweet({ tweet }) {
                 <i
                   className={
                     tweet.likes.includes(user._id)
-                      ? "bi bi-suit-heart-fill text-danger"
-                      : "bi bi-suit-heart-fill text-secondary"
+                      ? "bi bi-suit-heart-fill text-danger i-hover"
+                      : "bi bi-suit-heart-fill text-secondary i-hover"
                   }
                   onClick={handleLike}
                 >
@@ -73,10 +73,10 @@ function Tweet({ tweet }) {
                   {tweet.likes.length}{" "}
                 </i>
               </p>
-              <i className="bi bi-trash" onClick={handleDelete}></i>
+              <i className="bi bi-trash i-hover" onClick={handleDelete}></i>
             </div>
           </div>
-          <hr />
+          <hr/>
         </div>
       </div>
     </div>

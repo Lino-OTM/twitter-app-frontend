@@ -8,7 +8,7 @@ import Tweet from "../components/Tweet";
 import Trending from "../components/Trending";
 
 function Home() {
-  const allTweets = useSelector((state) => state.tweets.tweets);
+  const allTweets = useSelector((state) => state.tweets);
   const user = useSelector((state) => state.auth);
 
   const [tweet, setTweet] = useState("");
