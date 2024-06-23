@@ -1,8 +1,16 @@
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { logOut } from "../redux/authSlice";
 
 function SideBar() {
   const auth = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    dispatch(logOut());
+    navigate("/login");
+  };
   return (
     <>
       <ul className="nav flex-column position-fixed">
@@ -23,7 +31,12 @@ function SideBar() {
         </li>
         <div className="d-flex container flex-column justify-content-between ms-0 sidebarButtons">
           <button className="btn btn-primary rounded-pill mt-2">Tweet</button>
-          <button className="btn btn-danger rounded-pill">Logout</button>
+          <button
+            onClick={handleLogout}
+            className="btn btn-danger rounded-pill"
+          >
+            Logout
+          </button>
         </div>
       </ul>
     </>
