@@ -38,11 +38,11 @@ const Profile = () => {
             <SideBar />
           </div>
           <div className="col-6 text-white">
-            <div className="mb-4" id="profile-background-image">
+            <div className="mb-5" id="profile-background-image">
               <img
                 id="profile-image"
-                className="rounded-circle"
-                style={{ width: 50, height: 50 }}
+                className="rounded-circle img-profile"
+                style={{ width: 90, height: 90 }}
                 src={
                   user.image
                     ? user.image
@@ -51,13 +51,19 @@ const Profile = () => {
               />
             </div>
             <div className="d-flex justify-content-between">
-              <h5 className="">{user.firstname}</h5>
-              <div>
-                <span>Following 10</span> <span>Followers 20</span>
+              <h5 className="fw-bold mt-3">
+                {user.firstname} {user.lastname}
+              </h5>
+              <div className="mt-3">
+                <span className="fw-bold">
+                  10 <span className="fw-light text-secondary">Following</span>
+                </span>
+                <span className="fw-bold ms-3">20</span>
+                <span className="text-secondary fw-light"> Followers</span>
               </div>
             </div>
-            <p>@{user.username}</p>
-            <p>
+            <p className="text-secondary text-lowercase">@{user.username}</p>
+            <p className="text-capitalize">
               {user.description ? user.description : "Agrega una biografia..."}
             </p>
             <div className="mb-4">

@@ -54,7 +54,7 @@ function Tweet({ tweet }) {
             <h6 className="d-inline fw-bold">
               {tweet.user.firstname} {tweet.user.lastname}
             </h6>
-            <span className="ms-2 text-secondary fw-light">
+            <span className="ms-2 text-secondary text-lowercase fw-light">
               @{tweet.user.username}
             </span>
             <span className="ms-2 text-secondary fw-light">· 6h</span>
@@ -73,7 +73,7 @@ function Tweet({ tweet }) {
                   {tweet.likes.length}{" "}
                 </i>
               </p>
-              <i className="bi bi-trash i-hover" onClick={handleDelete}></i>
+              <i className="bi bi-trash i-hover text-danger" onClick={handleDelete}></i>
             </div>
           </div>
           <hr />
