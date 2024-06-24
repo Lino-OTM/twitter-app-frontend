@@ -51,7 +51,7 @@ function Tweet({ tweet }) {
         </div>
         <div className="col-11">
           <div>
-            <h6 className="d-inline fw-bold">
+            <h6 className="d-inline fs-4 fw-bold">
               {tweet.user.firstname} {tweet.user.lastname}
             </h6>
             <span className="ms-2 text-secondary fw-light">

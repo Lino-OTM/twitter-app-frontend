@@ -6,6 +6,7 @@ import axios from "axios";
 import SideBar from "../components/SideBar";
 import Tweet from "../components/Tweet";
 import Trending from "../components/Trending";
+import "./Home.css";
 
 function Home() {
   const allTweets = useSelector((state) => state.tweets);
@@ -54,7 +55,7 @@ function Home() {
 
   return (
     <>
-      <div className="container">
+      <div className="container home-font">
         <div className="row">
           <div className="col-2">
             <SideBar />

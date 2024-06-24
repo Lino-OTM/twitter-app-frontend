@@ -2,15 +2,17 @@ import { useState } from "react";
 import "./Register.css";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export const Register = () => {
   const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     firstname: "",
     lastname: "",
     email: "",
     username: "",
-    image: "",
+    image: undefined,
     password: "",
   });
 
@@ -20,18 +22,25 @@ export const Register = () => {
       [e.target.name]: e.target.value,
     });
   };
+  const handleFileChange = (e) => {
+    setFormData({
+      ...formData,
+      image: e.target.files[0],
+    });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     navigate("/login");
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/users`, {
+      const response = await axios({
+        url: `${import.meta.env.VITE_API_URL}/users`,
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "multipart/form-data",
         },
-        body: JSON.stringify(formData),
+        data: formData,
       });
     } catch (error) {
       console.error("Error:", error);
@@ -61,8 +70,10 @@ export const Register = () => {
 
         <form
           className="sign-up-form-wrapper__register-form bg-white d-flex flex-column container-fluid"
-          action="POST"
+          action="/users"
           onSubmit={handleSubmit}
+          method="post"
+          encType="multipart/form-data"
         >
           <div className="sign-up-form-wrapper__register-form-top-section">
             <h1 className="sign-up-form-wrapper__register-form-title">
@@ -102,7 +113,7 @@ export const Register = () => {
               onChange={handleChange}
             />
             <input
-              className="form-control"
+              className="form-control mb-0"
               type="text"
               name="username"
               placeholder="Username"
@@ -111,25 +122,14 @@ export const Register = () => {
               onChange={handleChange}
             />
 
-            <div className="sign-up-form-wrapper__register-form-select-file-wrapper d-flex align-items-center">
-              <input
-                type="file"
-                id="files"
-                name="files"
-                value={formData.image}
-                onChange={handleChange}
-                className="sign-up-form-wrapper__register-form-select-file-input"
-              />
-              <label
-                className="sign-up-form-wrapper__register-form-select-file-label"
-                htmlFor="files"
-              >
-                Choose file
-              </label>
-              <p className="sign-up-form-wrapper__register-form-selected-file">
-                No file choosen
-              </p>
-            </div>
+            <label htmlFor="formFile" className="form-label"></label>
+            <input
+              className="form-control"
+              onChange={handleFileChange}
+              type="file"
+              id="formFile"
+              name="image"
+            />
 
             <input
               className="form-control"

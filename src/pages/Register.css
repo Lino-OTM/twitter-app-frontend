@@ -1,8 +1,10 @@
+
 .sign-up-form-wrapper {
   max-width: 124.5rem;
   height: 86.6rem;
   border-radius: 3rem;
 }
+
 
 .sign-up-form-wrapper__aside-section {
   display: flex;
@@ -59,36 +61,6 @@
 .sign-up-form-wrapper__log-in {
   font-size: 1.62rem;
   margin-left: 1.1rem;
-}
-
-.sign-up-form-wrapper__register-form-select-file-wrapper {
-  border: 1px solid #dee2e6;
-  border-radius: 0.5rem;
-  margin-bottom: 1.9rem;
-}
-
-.sign-up-form-wrapper__register-form-select-file-input {
-  display: none;
-}
-
-.sign-up-form-wrapper__register-form-select-file-label {
-  font-size: 1.69rem;
-  color: #858585;
-  padding: 1.05rem 1.6rem;
-  padding-right: 2.1rem;
-  background-color: #e9ecef;
-}
-
-/* Browse */
-.sign-up-form-wrapper__register-form-select-file-wrapper
-  > label.sign-up-form-wrapper__register-form-select-file-label:nth-of-type(2) {
-  display: none;
-}
-.sign-up-form-wrapper__register-form-selected-file {
-  font-size: 1.74rem;
-  margin: 0;
-  margin-left: 1.5rem;
-  color: #858585;
 }
 
 @media (min-width: 1021px) and (max-width: 1298px) {
