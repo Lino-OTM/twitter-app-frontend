@@ -43,8 +43,9 @@ function Home() {
       );
 
       if (response.status === 200) {
-        dispatch(createTweet({ ...response.data }));
+        dispatch(createTweet({ ...response.data, user }));
         console.log("Tweet creado");
+        console.log(response.data);
       } else {
         console.log("No se pudo registrar el tweet");
       }
@@ -57,11 +58,16 @@ function Home() {
     <>
       <div className="container home-font">
         <div className="row">
-          <div className="col-2">
-            <SideBar />
+          <div className=" col-2">
+            <div className="col-2">
+              <div className="flex-column col-2 position-fixed sidebarResponsive">
+                <SideBar />
+              </div>
+            </div>
           </div>
+
           <div className="col-7 text-white border">
-            <h5>Home</h5>
+            <h5 className="my-4">Home</h5>
             <div className="row">
               <div className="col-1">
                 {" "}
